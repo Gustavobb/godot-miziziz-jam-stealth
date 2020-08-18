@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://World/Tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/WorldEnvironment.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World/Enviroment/Keys/Yellow/YellowKey.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World/Enviroment/Doors/Yellow/YellowDoor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/PlayerKeys.tscn" type="PackedScene" id=6]
+
+[node name="Level1" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 0.561218
+margin_top = 1.0
+margin_right = 561.561
+margin_bottom = 266.0
+color = Color( 0.0196078, 0.0196078, 0.0196078, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 65535, 0, 0, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 1, 5, 0, 1, 6, 0, 1, 7, 0, 1, 8, 0, 1, 9, 0, 1, 10, 0, 1, 11, 0, 1, 12, 0, 1, 13, 0, 1, 14, 0, 1, 15, 0, 1, 16, 0, 1, 17, 0, 1, 18, 0, 1, 19, 0, 1, 20, 0, 1, 21, 0, 1, 22, 0, 1, 23, 0, 1, 24, 0, 1, 25, 0, 1, 26, 0, 1, 27, 0, 2, 131071, 0, 65536, 65536, 0, 65537, 65537, 0, 131073, 65538, 0, 131073, 65539, 0, 131073, 65540, 0, 131073, 65541, 0, 131073, 65542, 0, 131073, 65543, 0, 131073, 65544, 0, 131073, 65545, 0, 131073, 65546, 0, 131073, 65547, 0, 131073, 65548, 0, 131073, 65549, 0, 131073, 65550, 0, 131073, 65551, 0, 131073, 65552, 0, 131073, 65553, 0, 131073, 65554, 0, 131073, 65555, 0, 131073, 65556, 0, 131073, 65557, 0, 131073, 65558, 0, 131073, 65559, 0, 131073, 65560, 0, 131073, 65561, 0, 131073, 65562, 0, 65537, 65563, 0, 65538, 196607, 0, 65536, 131072, 0, 65538, 131098, 0, 65536, 131099, 0, 65538, 262143, 0, 65536, 196608, 0, 65538, 196634, 0, 65536, 196635, 0, 65538, 327679, 0, 65536, 262144, 0, 65538, 262170, 0, 65536, 262171, 0, 65538, 393215, 0, 65536, 327680, 0, 65538, 327699, 0, 0, 327700, 0, 1, 327701, 0, 2, 327706, 0, 65536, 327707, 0, 65538, 458751, 0, 65536, 393216, 0, 65538, 393235, 0, 131072, 393236, 0, 131073, 393237, 0, 131074, 393242, 0, 65536, 393243, 0, 65538, 524287, 0, 65536, 458752, 0, 65538, 458778, 0, 65536, 458779, 0, 65538, 589823, 0, 65536, 524288, 0, 65538, 524314, 0, 65536, 524315, 0, 65538, 655359, 0, 65536, 589824, 0, 65538, 589850, 0, 65536, 589851, 0, 65538, 720895, 0, 65536, 655360, 0, 65537, 655361, 0, 1, 655362, 0, 1, 655363, 0, 1, 655364, 0, 1, 655365, 0, 1, 655366, 0, 1, 655367, 0, 1, 655368, 0, 1, 655369, 0, 1, 655370, 0, 1, 655371, 0, 1, 655372, 0, 1, 655373, 0, 1, 655374, 0, 1, 655375, 0, 1, 655376, 0, 1, 655377, 0, 1, 655378, 0, 1, 655379, 0, 1, 655380, 0, 1, 655381, 0, 1, 655382, 0, 1, 655383, 0, 1, 655384, 0, 1, 655385, 0, 1, 655386, 0, 65537, 655387, 0, 65538, 786431, 0, 131072, 720896, 0, 131073, 720897, 0, 131073, 720898, 0, 131073, 720899, 0, 131073, 720900, 0, 131073, 720901, 0, 131073, 720902, 0, 131073, 720903, 0, 131073, 720904, 0, 131073, 720905, 0, 131073, 720906, 0, 131073, 720907, 0, 131073, 720908, 0, 131073, 720909, 0, 131073, 720910, 0, 131073, 720911, 0, 131073, 720912, 0, 131073, 720913, 0, 131073, 720914, 0, 131073, 720915, 0, 131073, 720916, 0, 131073, 720917, 0, 131073, 720918, 0, 131073, 720919, 0, 131073, 720920, 0, 131073, 720921, 0, 131073, 720922, 0, 131073, 720923, 0, 131074 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerKeys" parent="CanvasLayer" instance=ExtResource( 6 )]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource( 3 )]
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 24.0814, 149.449 )
+
+[node name="Keys" type="YSort" parent="YSort"]
+
+[node name="YellowKey" parent="YSort/Keys" instance=ExtResource( 4 )]
+position = Vector2( 325.431, 65.9027 )
+
+[node name="Doors" type="YSort" parent="YSort"]
+
+[node name="YellowDoor" parent="YSort/Doors" instance=ExtResource( 5 )]
+position = Vector2( 157.706, 153.039 )
+level = 1
+
+[node name="Limits" type="Node" parent="."]
+
+[node name="TopLeft" type="Position2D" parent="Limits"]
+
+[node name="BottomRight" type="Position2D" parent="Limits"]
+position = Vector2( 448.492, 192.169 )
