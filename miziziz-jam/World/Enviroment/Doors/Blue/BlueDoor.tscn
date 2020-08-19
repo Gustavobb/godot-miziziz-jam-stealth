@@ -1,0 +1,151 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://shader.shader" type="Shader" id=1]
+[ext_resource path="res://World/Enviroment/Doors/Door.gd" type="Script" id=2]
+[ext_resource path="res://World/Enviroment/Doors/DoorTexture.png" type="Texture" id=3]
+[ext_resource path="res://Sounds/door.wav" type="AudioStream" id=4]
+[ext_resource path="res://World/Enviroment/Doors/Blue/BlueDoor.png" type="Texture" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/glow_color = Color( 0.0392157, 0.227451, 0.960784, 1 )
+shader_param/emission_texture = ExtResource( 3 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.1, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.1, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("Enter")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 25.2915, 10 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 7.36037, 6.91368 )
+
+[node name="BlueDoor" type="Node2D"]
+script = ExtResource( 2 )
+color = 1
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 1 )
+texture = ExtResource( 5 )
+hframes = 2
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Close = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/Open = SubResource( 4 )
+
+[node name="PlayerEntered" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="PlayerEntered"]
+shape = SubResource( 5 )
+
+[node name="PlayerPassed" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPassed"]
+shape = SubResource( 6 )
+
+[node name="SpawnPoint" type="Position2D" parent="."]
+
+[node name="Enter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+[connection signal="area_entered" from="PlayerEntered" to="." method="_on_PlayerEntered_area_entered"]
+[connection signal="area_exited" from="PlayerEntered" to="." method="_on_PlayerEntered_area_exited"]
+[connection signal="area_entered" from="PlayerPassed" to="." method="_on_PlayerPassed_area_entered"]

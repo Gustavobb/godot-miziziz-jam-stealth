@@ -17,7 +17,7 @@ initial_velocity = 10.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale_curve = SubResource( 2 )
-color = Color( 0.811765, 0.776471, 0.721569, 1 )
+color = Color( 0.458824, 0.439216, 0.419608, 1 )
 
 [node name="WallSlidingParticle" type="Particles2D"]
 emitting = false

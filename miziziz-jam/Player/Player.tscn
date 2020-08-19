@@ -1,15 +1,17 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Player/Player.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Player/PlayerSM.gd" type="Script" id=3]
-[ext_resource path="res://Effects/SlowMotion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/Powers/DoubleJump/DoubleJump.gd" type="Script" id=4]
 [ext_resource path="res://Player/Player-texture.png" type="Texture" id=5]
 [ext_resource path="res://shader.shader" type="Shader" id=6]
 [ext_resource path="res://Effects/Particles/RunParticle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Effects/Particles/FallParticle.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Effects/Particles/WallSlidingParticle.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Player/Camera2D.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Player/Camera/Camera2D.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Player/Powers/Dash/Dash.gd" type="Script" id=11]
+[ext_resource path="res://Player/Powers/SlowMo/SlowMotion.gd" type="Script" id=12]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
@@ -294,7 +296,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 8.17338, 4.0657 )
+extents = Vector2( 6.07011, 4.0657 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -324,7 +326,31 @@ anims/WallSlide = SubResource( 8 )
 [node name="PlayerSM" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="SlowMotion" parent="." instance=ExtResource( 4 )]
+[node name="SlowMotion" type="Node2D" parent="."]
+script = ExtResource( 12 )
+
+[node name="Cooldown" type="Timer" parent="SlowMotion"]
+
+[node name="Dash" type="Node2D" parent="."]
+script = ExtResource( 11 )
+
+[node name="DashTimer" type="Timer" parent="Dash"]
+wait_time = 0.1
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="Dash"]
+wait_time = 0.5
+one_shot = true
+
+[node name="GhostTimer" type="Timer" parent="Dash"]
+wait_time = 0.01
+
+[node name="DoubleJump" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
 
 [node name="WallCast" type="Node2D" parent="."]
 visible = false
@@ -353,17 +379,6 @@ position = Vector2( -4.45608, 6.02399 )
 enabled = true
 cast_to = Vector2( -2, 0 )
 
-[node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
-[node name="DashCooldown" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
-[node name="GhostTimer" type="Timer" parent="."]
-wait_time = 0.01
-
 [node name="RunParticlePivot" type="Position2D" parent="."]
 position = Vector2( 0, 7.95325 )
 
@@ -386,6 +401,7 @@ collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource( 9 )
-[connection signal="timeout" from="DashTimer" to="." method="_on_DashTimer_timeout"]
-[connection signal="timeout" from="DashCooldown" to="." method="_on_DashCooldown_timeout"]
-[connection signal="timeout" from="GhostTimer" to="." method="_on_GhostTimer_timeout"]
+[connection signal="timeout" from="SlowMotion/Cooldown" to="SlowMotion" method="_on_Cooldown_timeout"]
+[connection signal="timeout" from="Dash/DashTimer" to="Dash" method="_on_DashTimer_timeout"]
+[connection signal="timeout" from="Dash/DashCooldown" to="Dash" method="_on_DashCooldown_timeout"]
+[connection signal="timeout" from="Dash/GhostTimer" to="Dash" method="_on_GhostTimer_timeout"]

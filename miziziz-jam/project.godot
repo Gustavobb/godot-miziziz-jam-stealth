@@ -21,11 +21,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Miziziz-jam"
-config/icon="res://icon.png"
+run/main_scene="res://World/Levels/Level1.tscn"
 
 [autoload]
 
 PlayerStats="*res://AutoLoad/PlayerStats.tscn"
+SceneChange="*res://AutoLoad/SceneChange.tscn"
+BackgorundMusic="*res://Sounds/BackgorundMusic.tscn"
 
 [display]
 
@@ -78,6 +80,8 @@ ui_dash={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Key"
 2d_physics/layer_4="Door"
+2d_physics/layer_5="Enemie"
+2d_physics/layer_6="PlayerDetection"
 
 [rendering]
 

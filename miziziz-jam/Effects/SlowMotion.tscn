@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Effects/SlowMotion.gd" type="Script" id=1]
-
-[node name="SlowMotion" type="Node"]
-script = ExtResource( 1 )
-
-[node name="Cooldown" type="Timer" parent="."]
-[connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
