@@ -42,13 +42,11 @@ func _on_YellowDoor_player_passed(level):
 		SceneChange.change_scene("res://World/Levels/Level%s.tscn"%str(level), 0.0)
 
 func _on_LaserSight_is_player():
-	if !found_player:
-		found_player = true
-		$YSort/Player/Camera2D/ScreenShake.start()
-		SceneChange.change_scene("res://World/Levels/Level%s.tscn"%str(level_int), 0.5)
+	found_player = true
+	$YSort/Player/Camera2D/ScreenShake.start()
+	SceneChange.change_scene("res://World/Levels/Level%s.tscn"%str(level_int), 0.5)
 
 func _on_Enemie_is_player():
-	if !found_player:
-		found_player = true
-		$YSort/Player/Camera2D/ScreenShake.start()
-		SceneChange.change_scene("res://World/Levels/Level%s.tscn"%str(level_int), 0.5)
+	found_player = true
+	$YSort/Player/Camera2D/ScreenShake.start()
+	SceneChange.change_scene("res://World/Levels/Level%s.tscn"%str(level_int), 0.5)

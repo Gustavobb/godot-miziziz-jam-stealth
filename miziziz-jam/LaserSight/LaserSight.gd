@@ -15,6 +15,7 @@ signal stop_working
 signal work
 
 var collision_mask_cache
+var found_player = false
 
 func _ready():
 	ray.enabled = true
@@ -24,7 +25,8 @@ func _physics_process(_delta):
 	if ray.is_colliding(): 
 		var mask_name = ray.get_collider().name
 		if collision_mask_cache != mask_name:
-			if mask_name == "Player":
+			if mask_name == "Player" and !found_player:
+				found_player = true
 				siren.play()
 				emit_signal("is_player")
 			emit_signal("hit", ray.get_collision_point())

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://World/Tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://World/Levels/Level.gd" type="Script" id=7]
 [ext_resource path="res://Player/Powers/DoubleJump/DoubleJump.tscn" type="PackedScene" id=8]
 [ext_resource path="res://UI/PlayerPowers.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Player/Powers/SlowMo/SlowMo.tscn" type="PackedScene" id=10]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 7 )
@@ -63,7 +64,10 @@ position = Vector2( 17, 0 )
 [node name="Powers" type="YSort" parent="YSort"]
 
 [node name="DoubleJumpPowerUp" parent="YSort/Powers" instance=ExtResource( 8 )]
-position = Vector2( 229.212, 148.981 )
+position = Vector2( 156.895, 146.458 )
+
+[node name="SlowMoPowerUp" parent="YSort/Powers" instance=ExtResource( 10 )]
+position = Vector2( 180.124, 143.86 )
 
 [node name="Limits" type="Node" parent="."]
 
