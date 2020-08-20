@@ -121,7 +121,7 @@ extents = Vector2( 10.9878, 13.7913 )
 
 [node name="DashPowerUp" type="Node2D"]
 script = ExtResource( 1 )
-power = 2
+power = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )

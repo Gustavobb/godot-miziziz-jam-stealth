@@ -50,8 +50,9 @@ one_shot = true
 [node name="Work" type="Timer" parent="."]
 one_shot = true
 
-[node name="Siren" type="AudioStreamPlayer2D" parent="."]
+[node name="Siren" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -10.0
 
 [node name="Laser" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )

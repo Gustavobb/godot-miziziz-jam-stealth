@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://World/Levels/Level.gd" type="Script" id=1]
 [ext_resource path="res://World/Tileset.tres" type="TileSet" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Enemies/Enemie.tscn" type="PackedScene" id=7]
 [ext_resource path="res://LaserSight/LaserSight.tscn" type="PackedScene" id=8]
 [ext_resource path="res://UI/PlayerPowers.tscn" type="PackedScene" id=9]
+[ext_resource path="res://World/Enviroment/Doors/Red/RedDoor.tscn" type="PackedScene" id=10]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource( 1 )
@@ -60,10 +61,17 @@ position = Vector2( 17.3725, 2.6727 )
 
 [node name="YellowDoor2" parent="YSort/Doors" instance=ExtResource( 4 )]
 position = Vector2( 420.781, 72.9941 )
-level = 2
+level = 3
 
 [node name="SpawnPoint" parent="YSort/Doors/YellowDoor2" index="4"]
 position = Vector2( -15.5907, 3.11815 )
+
+[node name="RedDoor" parent="YSort/Doors" instance=ExtResource( 10 )]
+position = Vector2( 75.4445, 153.072 )
+level = 8
+
+[node name="SpawnPoint" parent="YSort/Doors/RedDoor" index="4"]
+position = Vector2( 16.9514, 1.45677 )
 
 [node name="LaserSight" parent="YSort" instance=ExtResource( 8 )]
 position = Vector2( 284.125, 37.2259 )
@@ -92,3 +100,5 @@ position = Vector2( 465.131, 191.639 )
 [editable path="YSort/Doors/YellowDoor"]
 
 [editable path="YSort/Doors/YellowDoor2"]
+
+[editable path="YSort/Doors/RedDoor"]
