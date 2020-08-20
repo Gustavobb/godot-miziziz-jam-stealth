@@ -36,6 +36,10 @@ func circl_ease_in(t, b, c, d):
 	
 func _ready():
 	Engine.time_scale = 1
+	var _connect = PlayerStats.connect("has_slow_mo_changed", self, "_update_power")
 
 func _on_Cooldown_timeout():
 	can_slo = true
+
+func _update_power():
+	has_slow_mo = PlayerStats.has_slow_mo
