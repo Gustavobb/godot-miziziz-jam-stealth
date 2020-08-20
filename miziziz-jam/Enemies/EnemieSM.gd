@@ -27,6 +27,7 @@ func _enter_state(new_state):
 			parent.idle_timer.start(rand_range(2, 3))
 			
 		states_dict.wander: 
+			parent.run.play()
 			parent.animation_player.play("Wander")
 			parent.run_particle.create_particle()
 			parent.wander_timer.start(rand_range(2, 3))

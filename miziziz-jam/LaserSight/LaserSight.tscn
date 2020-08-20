@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://LaserSight/laser_holder.png" type="Texture" id=1]
 [ext_resource path="res://LaserSight/LaserSight.gd" type="Script" id=2]
 [ext_resource path="res://Sounds/alarm.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/laser.wav" type="AudioStream" id=4]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -51,8 +52,15 @@ one_shot = true
 
 [node name="Siren" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+
+[node name="Laser" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -25.0
+autoplay = true
+max_distance = 125.0
 [connection signal="hit" from="." to="." method="_on_LaserSight_hit"]
 [connection signal="stop_working" from="." to="." method="_on_LaserSight_stop_working"]
 [connection signal="work" from="." to="." method="_on_LaserSight_work"]
 [connection signal="timeout" from="Stop" to="." method="_on_Stop_timeout"]
 [connection signal="timeout" from="Work" to="." method="_on_Work_timeout"]
+[connection signal="finished" from="Laser" to="." method="_on_Laser_finished"]

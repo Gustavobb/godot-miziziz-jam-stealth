@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Enemies/Enemie.gd" type="Script" id=1]
 [ext_resource path="res://Enemies/EnemieSM.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Enemies/view.png" type="Texture" id=4]
 [ext_resource path="res://Sounds/hey.wav" type="AudioStream" id=5]
 [ext_resource path="res://Effects/Particles/RunParticle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Sounds/Run.wav" type="AudioStream" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4.42743, 7.0406 )
@@ -115,6 +116,7 @@ script = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -0.233335 )
 texture = ExtResource( 3 )
 hframes = 3
 
@@ -163,6 +165,12 @@ shadow_enabled = true
 stream = ExtResource( 5 )
 volume_db = -5.0
 
+[node name="Run" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+volume_db = -10.0
+pitch_scale = 1.7
+max_distance = 125.0
+
 [node name="RunParticlePivot" type="Position2D" parent="."]
 position = Vector2( 0, 6.754 )
 
@@ -172,3 +180,4 @@ position = Vector2( -4.90002, 0 )
 [connection signal="timeout" from="IdleTimer" to="." method="_on_IdleTimer_timeout"]
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_PlayerDetection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_PlayerDetection_body_exited"]
+[connection signal="finished" from="Run" to="." method="_on_Run_finished"]

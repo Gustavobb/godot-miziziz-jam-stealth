@@ -3,7 +3,7 @@ extends Node
 var has_yellow_key = false setget set_has_yellow_key
 var has_blue_key = false setget set_has_blue_key
 var has_red_key = false setget set_has_red_key
-var past_level = 2 setget set_past_level
+var past_level = 0 setget set_past_level
 var entered_door = 0 setget set_entered_door
 
 var has_dash = false setget set_has_dash

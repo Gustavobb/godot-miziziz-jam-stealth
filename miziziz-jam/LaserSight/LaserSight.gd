@@ -5,6 +5,7 @@ onready var line = $Line2D
 onready var work_timer = $Work
 onready var stop_working_timer = $Stop
 onready var siren = $Siren
+onready var laser = $Laser
 
 export(float) var stop_working_time = 0
 export(float) var work_time = 0
@@ -38,10 +39,12 @@ func _on_LaserSight_hit(point):
 
 func _on_Stop_timeout():
 	emit_signal("work")
+	laser.play()
 	work_timer.start(work_time)
 
 func _on_Work_timeout():
 	emit_signal("stop_working")
+	laser.stop()
 	stop_working_timer.start(stop_working_time)
 
 func _on_LaserSight_stop_working():
@@ -51,3 +54,6 @@ func _on_LaserSight_stop_working():
 
 func _on_LaserSight_work():
 	ray.set_deferred("enabled", true)
+
+func _on_Laser_finished():
+	laser.play()

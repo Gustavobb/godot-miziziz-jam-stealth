@@ -15,6 +15,7 @@ onready var idle_timer = $IdleTimer
 onready var ray_left = $Rays/Left
 onready var ray_right = $Rays/Right
 onready var hey = $Hey
+onready var run = $Run
 onready var player_detection = $PlayerDetection
 
 var velocity = Vector2.ZERO
@@ -70,3 +71,6 @@ func _on_PlayerDetection_body_entered(body):
 
 func _on_PlayerDetection_body_exited(_body):
 	player_body = null
+
+func _on_Run_finished():
+	if wandering: run.play()
