@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/doorexplanation.png-e19a06eb88b8f884a0bddf748c567734.stex"
+path="res://.import/Enemiee.png-5977237d5664b73173d861bafcbfca12.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Text/doorexplanation.png"
-dest_files=[ "res://.import/doorexplanation.png-e19a06eb88b8f884a0bddf748c567734.stex" ]
+source_file="res://Enemies/Enemiee.png"
+dest_files=[ "res://.import/Enemiee.png-5977237d5664b73173d861bafcbfca12.stex" ]
 
 [params]
 

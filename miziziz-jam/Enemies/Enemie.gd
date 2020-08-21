@@ -17,6 +17,8 @@ onready var ray_right = $Rays/Right
 onready var hey = $Hey
 onready var run = $Run
 onready var player_detection = $PlayerDetection
+onready var player_detection_collider = $PlayerDetection/CollisionShape2D
+onready var light = $Light2D
 
 var velocity = Vector2.ZERO
 var direction = Vector2.RIGHT
@@ -24,6 +26,7 @@ var BODY_MASS = 200
 var wandering = false
 var found_player = false
 var player_body
+var lights_out = false
 
 signal is_player
 
@@ -54,10 +57,17 @@ func aim():
 		var collided = space_state.intersect_ray(position, player_body.position, [self])
 		
 		if collided and collided.collider.name == "Player":
+			animation_player.play("Hey")
 			wandering = false
 			found_player = true
 			hey.play()
 			emit_signal("is_player")
+	
+func _ready():
+	var _connect = PlayerStats.connect("lights_out_changed", self, "_lights_out_handler")
+
+func _lights_out_handler():
+	lights_out = PlayerStats.lights_out
 	
 func _on_WanderTimer_timeout():
 	wandering = false

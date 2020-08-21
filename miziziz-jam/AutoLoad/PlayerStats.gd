@@ -9,6 +9,11 @@ var entered_door = 0 setget set_entered_door
 var has_dash = false setget set_has_dash
 var has_double_jump = false setget set_has_double_jump
 var has_slow_mo = false setget set_has_slow_mo
+var has_lights_out = false setget set_has_lights_out
+
+var lights_out = false setget set_lights_out
+var slow_mo_percentage = 1.0 setget set_slow_mo_percentage
+var lights_out_percentage = 1.0 setget set_lights_out_percentage
 
 signal yellow_key_changed
 signal blue_key_changed
@@ -16,7 +21,23 @@ signal red_key_changed
 signal has_dash_changed
 signal has_double_jump_changed
 signal has_slow_mo_changed
+signal has_lights_out_changed
+signal lights_out_changed
 
+func set_lights_out(value):
+	lights_out = value
+	emit_signal("lights_out_changed")
+	
+func set_slow_mo_percentage(value):
+	slow_mo_percentage = value
+
+func set_lights_out_percentage(value):
+	lights_out_percentage = value
+	
+func set_has_lights_out(value):
+	has_lights_out = value
+	emit_signal("has_lights_out_changed")
+	
 func set_has_dash(value):
 	has_dash = value
 	emit_signal("has_dash_changed")
@@ -56,7 +77,7 @@ func contain_this_power(power):
 	if power == "double_jump": return has_double_jump
 	elif power == "dash": return has_dash
 	elif power == "slow_mo": return has_slow_mo
-	elif power == "lights_out": return has_slow_mo
+	elif power == "lights_out": return has_lights_out
 
 func got_key(key_color):
 	if key_color == "yellow": set_has_yellow_key(true)
@@ -67,4 +88,4 @@ func got_power(power):
 	if power == "double_jump": set_has_double_jump(true)
 	elif power == "dash": set_has_dash(true)
 	elif power == "slow_mo": set_has_slow_mo(true)
-	elif power == "lights_out": set_has_slow_mo(true)
+	elif power == "lights_out": set_has_lights_out(true)

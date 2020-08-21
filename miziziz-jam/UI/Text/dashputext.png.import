@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/finalexplanation.png-1a4953f9c95290b08825625bbfdec615.stex"
+path="res://.import/dashputext.png-afb2aae0cbbb35fe2d876b2c20a25c0e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Text/finalexplanation.png"
-dest_files=[ "res://.import/finalexplanation.png-1a4953f9c95290b08825625bbfdec615.stex" ]
+source_file="res://UI/Text/dashputext.png"
+dest_files=[ "res://.import/dashputext.png-afb2aae0cbbb35fe2d876b2c20a25c0e.stex" ]
 
 [params]
 

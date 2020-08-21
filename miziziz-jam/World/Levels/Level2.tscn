@@ -68,18 +68,20 @@ position = Vector2( -15.5907, 3.11815 )
 
 [node name="RedDoor" parent="YSort/Doors" instance=ExtResource( 10 )]
 position = Vector2( 75.4445, 153.072 )
-level = 8
+level = 20
 
 [node name="SpawnPoint" parent="YSort/Doors/RedDoor" index="4"]
 position = Vector2( 16.9514, 1.45677 )
 
-[node name="LaserSight" parent="YSort" instance=ExtResource( 8 )]
+[node name="Laser" type="YSort" parent="YSort"]
+
+[node name="LaserSight" parent="YSort/Laser" instance=ExtResource( 8 )]
 position = Vector2( 284.125, 37.2259 )
 rotation = -1.14319
 stop_working_time = 1.0
 work_time = 2.0
 
-[node name="LaserSight2" parent="YSort" instance=ExtResource( 8 )]
+[node name="LaserSight2" parent="YSort/Laser" instance=ExtResource( 8 )]
 position = Vector2( 110.316, 41.2273 )
 stop_working_time = 1.0
 work_time = 2.0
@@ -94,8 +96,9 @@ position = Vector2( 465.131, 191.639 )
 [connection signal="is_player" from="YSort/Enemies/Enemie2" to="." method="_on_Enemie_is_player"]
 [connection signal="player_passed" from="YSort/Doors/YellowDoor" to="." method="_on_YellowDoor_player_passed"]
 [connection signal="player_passed" from="YSort/Doors/YellowDoor2" to="." method="_on_YellowDoor_player_passed"]
-[connection signal="is_player" from="YSort/LaserSight" to="." method="_on_LaserSight_is_player"]
-[connection signal="is_player" from="YSort/LaserSight2" to="." method="_on_LaserSight_is_player"]
+[connection signal="player_passed" from="YSort/Doors/RedDoor" to="." method="_on_RedDoor_player_passed"]
+[connection signal="is_player" from="YSort/Laser/LaserSight" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Laser/LaserSight2" to="." method="_on_LaserSight_is_player"]
 
 [editable path="YSort/Doors/YellowDoor"]
 

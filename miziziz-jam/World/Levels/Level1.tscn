@@ -9,9 +9,9 @@
 [ext_resource path="res://World/Levels/Level.gd" type="Script" id=7]
 [ext_resource path="res://Player/Powers/DoubleJump/DoubleJumpPu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://UI/PlayerPowers.tscn" type="PackedScene" id=9]
-[ext_resource path="res://UI/Text/finalexplanation.png" type="Texture" id=10]
+[ext_resource path="res://UI/Text/doorexplanation-export.png" type="Texture" id=10]
 [ext_resource path="res://UI/Text/leftright.png" type="Texture" id=11]
-[ext_resource path="res://UI/Text/doorexplanation.png" type="Texture" id=12]
+[ext_resource path="res://UI/Text/finalexplanation-export.png" type="Texture" id=12]
 [ext_resource path="res://UI/Text/puexplanation.png" type="Texture" id=13]
 [ext_resource path="res://LaserSight/LaserSight.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Enemies/Enemie.tscn" type="PackedScene" id=15]
@@ -46,7 +46,7 @@ texture = ExtResource( 11 )
 [node name="Tutorial2" type="Sprite" parent="."]
 position = Vector2( 1036.61, 116.438 )
 scale = Vector2( 1.0221, 1 )
-texture = ExtResource( 12 )
+texture = ExtResource( 10 )
 
 [node name="Tutorial3" type="Sprite" parent="."]
 position = Vector2( 412.005, 72.4838 )
@@ -56,15 +56,13 @@ texture = ExtResource( 13 )
 [node name="Tutorial4" type="Sprite" parent="."]
 position = Vector2( 662.171, 79.211 )
 scale = Vector2( 1.0221, 1 )
-texture = ExtResource( 10 )
+texture = ExtResource( 12 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerKeys" parent="CanvasLayer" instance=ExtResource( 6 )]
 
 [node name="PlayerPowers" parent="CanvasLayer" instance=ExtResource( 9 )]
-margin_top = -0.33371
-margin_bottom = -0.33371
 
 [node name="WorldEnvironment" parent="." instance=ExtResource( 3 )]
 
@@ -99,7 +97,7 @@ stop_working_time = 2.0
 work_time = 1.0
 
 [node name="Enemie" parent="YSort" instance=ExtResource( 15 )]
-position = Vector2( 877.52, 145.664 )
+position = Vector2( 890.478, 149.46 )
 
 [node name="Limits" type="Node" parent="."]
 

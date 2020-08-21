@@ -1,6 +1,6 @@
 extends Node2D
 
-export(int) var DASH_POWER = 800
+export(int) var DASH_POWER = 600
 const ghost_sprite = preload("res://Effects/GhostSprite.tscn")
 
 onready var dash_timer = $DashTimer
@@ -12,13 +12,20 @@ onready var has_dash = PlayerStats.has_dash
 var is_dashing = false
 var can_dash = true
 
+func _ready():
+		var _connect = PlayerStats.connect("has_dash_changed", self, "_update_power")
+		
 func apply_dash():
-	ghost_timer.start()
-	dash_timer.start()
-	is_dashing = true
-	can_dash = false
-	player.velocity.x = -DASH_POWER if player.sprite.flip_h else DASH_POWER
+	if can_dash:
+		ghost_timer.start()
+		dash_timer.start()
+		is_dashing = true
+		can_dash = false
+		player.velocity.x = -DASH_POWER if player.sprite.flip_h else DASH_POWER
 
+func _update_power():
+	has_dash = PlayerStats.has_dash
+	
 func _on_DashTimer_timeout():
 	player.velocity.x = 0
 	is_dashing = false
@@ -30,8 +37,8 @@ func _on_DashCooldown_timeout():
 
 func _on_GhostTimer_timeout():
 	var ghost_sprite_instance = ghost_sprite.instance()
-	get_parent().add_child(ghost_sprite_instance)
+	player.get_parent().add_child(ghost_sprite_instance)
 	ghost_sprite_instance.frame = player.sprite.frame
 	ghost_sprite_instance.flip_h = player.sprite.flip_h
 	ghost_sprite_instance.scale.y = player.sprite.scale.y
-	ghost_sprite_instance.position = self.position
+	ghost_sprite_instance.position = player.position

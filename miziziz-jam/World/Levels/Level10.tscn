@@ -50,7 +50,9 @@ level = 3
 [node name="SpawnPoint" parent="YSort/Doors/BlueDoor" index="4"]
 position = Vector2( 18.2634, 0 )
 
-[node name="DashPowerUp" parent="YSort" instance=ExtResource( 8 )]
+[node name="Powers" type="YSort" parent="YSort"]
+
+[node name="DashPowerUp" parent="YSort/Powers" instance=ExtResource( 8 )]
 position = Vector2( 304.34, 122.973 )
 
 [node name="Limits" type="Node" parent="."]

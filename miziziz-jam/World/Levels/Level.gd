@@ -35,24 +35,34 @@ func _draw_power():
 	if player_stats.has_double_jump and has_node("YSort/Powers/DoubleJumpPowerUp"): $YSort/Powers/DoubleJumpPowerUp.queue_free() 
 	if player_stats.has_dash and has_node("YSort/Powers/DashPowerUp"): $YSort/Powers/DashPowerUp.queue_free() 
 	if player_stats.has_slow_mo and has_node("YSort/Powers/SlowMoPowerUp"): $YSort/Powers/SlowMoPowerUp.queue_free() 
+	if player_stats.has_lights_out and has_node("YSort/Powers/LightsOutPowerUp"): $YSort/Powers/LightsOutPowerUp.queue_free() 
 
 func _player_passed(level):
 	if !found_player:
 		player_stats.set_past_level(level_int)
 		SceneChange.change_scene("res://World/Levels/Level%s.tscn"%str(level), 0.0)
+
+func _check_passed():
+	if !found_player:
+		found_player = true
+		$YSort/Player/Camera2D/ScreenShake.start()
+		SceneChange.change_scene("res://World/Levels/Level%s.tscn"%str(level_int), 0.5)
 		
 func _on_YellowDoor_player_passed(level):
 	_player_passed(level)
 
 func _on_LaserSight_is_player():
-	found_player = true
-	$YSort/Player/Camera2D/ScreenShake.start()
-	SceneChange.change_scene("res://World/Levels/Level%s.tscn"%str(level_int), 0.5)
+	_check_passed()
 
 func _on_Enemie_is_player():
-	found_player = true
-	$YSort/Player/Camera2D/ScreenShake.start()
-	SceneChange.change_scene("res://World/Levels/Level%s.tscn"%str(level_int), 0.5)
+	_check_passed()
 
 func _on_BlueDoor_player_passed(level):
 	_player_passed(level)
+
+func _on_RedDoor_player_passed(level):
+	_player_passed(level)
+
+func _on_Diamond_game_finished():
+	if !found_player:
+		SceneChange.change_scene("res://World/Levels/End.tscn", 0.0)

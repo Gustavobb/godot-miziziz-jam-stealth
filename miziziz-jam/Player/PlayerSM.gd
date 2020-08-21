@@ -82,7 +82,7 @@ func _enter_state(new_state):
 
 func _exit_state(old_state):
 	match old_state:
-		states_dict.dash: if parent.is_on_floor(): parent.double_jump = false
+		states_dict.dash: if parent.is_on_floor(): parent.double_jump.double_jump = false
 		states_dict.wallslide: 
 			parent.wall_particle.destroy_particle()
 			parent.double_jump.double_jump = false
@@ -95,13 +95,21 @@ func _input(event):
 			parent.double_jump.double_jump = (!parent.is_on_floor() and !parent.dash.is_dashing and parent.coyote_timer.is_stopped())
 			parent.coyote_timer.stop()
 			
-			if parent.double_jump.double_jump and parent.double_jump.has_double_jump: parent.double_jump.apply_double_jump()
-			elif !parent.double_jump.double_jump: parent.apply_jump()
+			if parent.double_jump.double_jump and parent.double_jump.has_double_jump: 
+				parent.jump_sound.play()
+				parent.double_jump.apply_double_jump()
+				
+			elif !parent.double_jump.double_jump: 
+				parent.jump_sound.play()
+				parent.apply_jump()
 			
 		elif parent.slidin_the_wall:
+			parent.jump_sound.play()
 			parent.apply_wall_jump()
 	
-	if event.is_action_pressed("ui_dash") and parent.dash.can_dash and parent.dash.has_dash: 
+	if event.is_action_pressed("ui_dash") and parent.dash.has_dash: 
 		parent.dash.apply_dash()
 	
-	if event.is_action_pressed("ui_space") and parent.slow_mo.has_slow_mo: parent.apply_slow()
+	if event.is_action_pressed("ui_space") and parent.slow_mo.has_slow_mo: parent.slow_mo.apply_slow()
+	
+	if event.is_action_pressed("lights_out") and parent.lights_out.has_lights_out: parent.lights_out.apply_lights_out()

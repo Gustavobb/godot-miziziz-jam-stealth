@@ -61,31 +61,36 @@ level = 11
 [node name="SpawnPoint" parent="YSort/Doors/BlueDoor" index="4"]
 position = Vector2( -18.3542, 0.374573 )
 
-[node name="LaserSight2" parent="YSort" instance=ExtResource( 8 )]
+[node name="Keys" type="YSort" parent="YSort"]
+
+[node name="BlueKey" parent="YSort/Keys" instance=ExtResource( 11 )]
+position = Vector2( 592, 320 )
+
+[node name="Laser" type="YSort" parent="YSort"]
+
+[node name="LaserSight2" parent="YSort/Laser" instance=ExtResource( 8 )]
 position = Vector2( 25.0052, 135.619 )
 rotation = -1.5708
-work_time = 1.0
+stop_working_time = 0.001
+work_time = 4.0
 
-[node name="LaserSight3" parent="YSort" instance=ExtResource( 8 )]
+[node name="LaserSight3" parent="YSort/Laser" instance=ExtResource( 8 )]
 position = Vector2( 393.214, 121.385 )
 rotation = -1.5708
 stop_working_time = 2.0
 work_time = 1.0
 
-[node name="LaserSight4" parent="YSort" instance=ExtResource( 8 )]
+[node name="LaserSight4" parent="YSort/Laser" instance=ExtResource( 8 )]
 position = Vector2( 393.214, 188.809 )
 rotation = -1.5708
 stop_working_time = 3.0
 work_time = 2.0
 
-[node name="LaserSight5" parent="YSort" instance=ExtResource( 8 )]
+[node name="LaserSight5" parent="YSort/Laser" instance=ExtResource( 8 )]
 position = Vector2( 393.214, 250.24 )
 rotation = -1.5708
 stop_working_time = 4.0
 work_time = 4.0
-
-[node name="BlueKey" parent="YSort" instance=ExtResource( 11 )]
-position = Vector2( 592, 320 )
 
 [node name="Limits" type="Node" parent="."]
 
@@ -94,10 +99,11 @@ position = Vector2( 592, 320 )
 [node name="BottomRight" type="Position2D" parent="Limits"]
 position = Vector2( 704, 368 )
 [connection signal="player_passed" from="YSort/Doors/YellowDoor" to="." method="_on_YellowDoor_player_passed"]
-[connection signal="is_player" from="YSort/LaserSight2" to="." method="_on_LaserSight_is_player"]
-[connection signal="is_player" from="YSort/LaserSight3" to="." method="_on_LaserSight_is_player"]
-[connection signal="is_player" from="YSort/LaserSight4" to="." method="_on_LaserSight_is_player"]
-[connection signal="is_player" from="YSort/LaserSight5" to="." method="_on_LaserSight_is_player"]
+[connection signal="player_passed" from="YSort/Doors/BlueDoor" to="." method="_on_BlueDoor_player_passed"]
+[connection signal="is_player" from="YSort/Laser/LaserSight2" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Laser/LaserSight3" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Laser/LaserSight4" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Laser/LaserSight5" to="." method="_on_LaserSight_is_player"]
 
 [editable path="YSort/Doors/YellowDoor"]
 

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/lightsout.wav-c57b3ac2848b98a0c11f0fe98fbb6ca6.sample"
+
+[deps]
+
+source_file="res://Sounds/lightsout.wav"
+dest_files=[ "res://.import/lightsout.wav-c57b3ac2848b98a0c11f0fe98fbb6ca6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -21,6 +21,9 @@ onready var fall_particle = $FallParticle
 onready var camera_shake = $Camera2D/ScreenShake
 onready var dash = $Dash
 onready var double_jump = $DoubleJump
+onready var lights_out = $LightsOut
+onready var jump_sound = $Jump
+onready var undo = $Undo
 
 var velocity = Vector2.ZERO
 var input_velocity = Vector2.ZERO
@@ -31,12 +34,9 @@ var slidin_the_wall = false
 func apply_gravity(delta):
 	BODY_MASS = 200
 	if !is_on_floor(): BODY_MASS = 160
-	if dash.is_dashing: BODY_MASS = 0
 	if slidin_the_wall: BODY_MASS = 20
 	velocity.y += GRAVITY * BODY_MASS * delta
-
-func apply_slow():
-	slow_mo.start()
+	if dash.is_dashing and velocity.y > 0: velocity.y = 0
 	
 func apply_input_movement(delta):
 	var _from = input_velocity * MAX_SPEED if input_velocity else Vector2.ZERO
@@ -74,3 +74,6 @@ func _is_on_wall(ray2d):
 		if ray.is_colliding(): return true
 	
 	return false
+
+func _on_GhostTimer_timeout():
+	pass # Replace with function body.
