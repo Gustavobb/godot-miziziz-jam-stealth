@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://World/Tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://World/Levels/Level.gd" type="Script" id=2]
+[ext_resource path="res://World/Enviroment/Doors/Yellow/YellowDoor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://UI/PlayerKeys.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://World/WorldEnvironment.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/PlayerPowers.tscn" type="PackedScene" id=7]
+[ext_resource path="res://World/Enviroment/Doors/Blue/BlueDoor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://LaserSight/LaserSight.tscn" type="PackedScene" id=9]
+
+[node name="Level22" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 1.0
+margin_top = -3.0
+margin_right = 562.0
+margin_bottom = 266.0
+color = Color( 0.0196078, 0.0196078, 0.0196078, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 131082, 0, 0, 131083, 0, 1, 131084, 0, 1, 131085, 0, 1, 131086, 0, 1, 131087, 0, 1, 131088, 0, 1, 131089, 0, 1, 131090, 0, 1, 131091, 0, 1, 131092, 0, 1, 131093, 0, 1, 131094, 0, 2, 196618, 0, 65536, 196619, 0, 65537, 196620, 0, 131073, 196621, 0, 131073, 196622, 0, 131073, 196623, 0, 131073, 196624, 0, 131073, 196625, 0, 131073, 196626, 0, 131073, 196627, 0, 131073, 196628, 0, 131073, 196629, 0, 65537, 196630, 0, 65538, 262154, 0, 65536, 262155, 0, 65538, 262165, 0, 65536, 262166, 0, 65538, 327690, 0, 65536, 327691, 0, 65538, 327701, 0, 65536, 327702, 0, 65538, 393226, 0, 65536, 393227, 0, 65538, 393237, 0, 65536, 393238, 0, 65538, 458762, 0, 65536, 458763, 0, 65538, 458773, 0, 65536, 458774, 0, 65538, 524298, 0, 65536, 524299, 0, 65538, 524309, 0, 65536, 524310, 0, 65538, 589834, 0, 65536, 589835, 0, 65537, 589836, 0, 1, 589837, 0, 1, 589838, 0, 1, 589839, 0, 1, 589840, 0, 1, 589841, 0, 1, 589842, 0, 1, 589843, 0, 1, 589844, 0, 1, 589845, 0, 65537, 589846, 0, 65538, 655370, 0, 131072, 655371, 0, 131073, 655372, 0, 131073, 655373, 0, 131073, 655374, 0, 131073, 655375, 0, 131073, 655376, 0, 131073, 655377, 0, 131073, 655378, 0, 131073, 655379, 0, 131073, 655380, 0, 131073, 655381, 0, 131073, 655382, 0, 131074 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerKeys" parent="CanvasLayer" instance=ExtResource( 4 )]
+
+[node name="PlayerPowers" parent="CanvasLayer" instance=ExtResource( 7 )]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource( 6 )]
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 5 )]
+
+[node name="Doors" type="YSort" parent="YSort"]
+
+[node name="BlueDoor" parent="YSort/Doors" instance=ExtResource( 8 )]
+position = Vector2( 204.5, 137.083 )
+level = 20
+
+[node name="SpawnPoint" parent="YSort/Doors/BlueDoor" index="4"]
+position = Vector2( 19.1883, 0.834274 )
+
+[node name="YellowDoor" parent="YSort/Doors" instance=ExtResource( 3 )]
+position = Vector2( 325.452, 137.083 )
+level = 20
+
+[node name="SpawnPoint" parent="YSort/Doors/YellowDoor" index="4"]
+position = Vector2( -17.5198, 0.500549 )
+
+[node name="Lasers" type="YSort" parent="YSort"]
+
+[node name="LaserSight" parent="YSort/Lasers" instance=ExtResource( 9 )]
+position = Vector2( 240.814, 73.1362 )
+stop_working_time = 0.1
+work_time = 0.3
+
+[node name="LaserSight2" parent="YSort/Lasers" instance=ExtResource( 9 )]
+position = Vector2( 256.274, 73.1362 )
+stop_working_time = 0.2
+work_time = 0.3
+
+[node name="LaserSight3" parent="YSort/Lasers" instance=ExtResource( 9 )]
+position = Vector2( 272.626, 73.1362 )
+stop_working_time = 0.1
+work_time = 0.3
+
+[node name="LaserSight4" parent="YSort/Lasers" instance=ExtResource( 9 )]
+position = Vector2( 289.275, 73.1362 )
+stop_working_time = 0.3
+work_time = 0.3
+
+[node name="Limits" type="Node" parent="."]
+
+[node name="TopLeft" type="Position2D" parent="Limits"]
+
+[node name="BottomRight" type="Position2D" parent="Limits"]
+position = Vector2( 465.131, 191.639 )
+[connection signal="player_passed" from="YSort/Doors/BlueDoor" to="." method="_on_BlueDoor_player_passed"]
+[connection signal="player_passed" from="YSort/Doors/YellowDoor" to="." method="_on_YellowDoor_player_passed"]
+[connection signal="is_player" from="YSort/Lasers/LaserSight" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Lasers/LaserSight3" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Lasers/LaserSight4" to="." method="_on_LaserSight_is_player"]
+
+[editable path="YSort/Doors/BlueDoor"]
+
+[editable path="YSort/Doors/YellowDoor"]

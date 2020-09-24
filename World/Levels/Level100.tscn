@@ -1,0 +1,135 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://UI/PlayerKeys.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/PlayerPowers.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/Tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://World/Levels/Level.gd" type="Script" id=4]
+[ext_resource path="res://LaserSight/LaserSight.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://World/WorldEnvironment.tscn" type="PackedScene" id=8]
+[ext_resource path="res://World/Enviroment/Doors/Red/RedDoor.tscn" type="PackedScene" id=10]
+[ext_resource path="res://World/Enviroment/Diamond/Diamond.tscn" type="PackedScene" id=11]
+
+[node name="Level100" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -2.42044
+margin_top = -2.57955
+margin_right = 561.58
+margin_bottom = 266.42
+color = Color( 0.0196078, 0.0196078, 0.0196078, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 65535, 0, 0, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 1, 5, 0, 1, 6, 0, 1, 7, 0, 1, 8, 0, 1, 9, 0, 1, 10, 0, 1, 11, 0, 1, 12, 0, 1, 13, 0, 1, 14, 0, 1, 15, 0, 1, 16, 0, 1, 17, 0, 1, 18, 0, 1, 19, 0, 1, 20, 0, 1, 21, 0, 1, 22, 0, 1, 23, 0, 1, 24, 0, 2, 131071, 0, 65536, 65536, 0, 65537, 65537, 0, 131073, 65538, 0, 131073, 65539, 0, 131073, 65540, 0, 131073, 65541, 0, 131073, 65542, 0, 131073, 65543, 0, 131073, 65544, 0, 131073, 65545, 0, 131073, 65546, 0, 131073, 65547, 0, 131073, 65548, 0, 131073, 65549, 0, 131073, 65550, 0, 131073, 65551, 0, 131073, 65552, 0, 131073, 65553, 0, 131073, 65554, 0, 131073, 65555, 0, 131073, 65556, 0, 131073, 65557, 0, 131073, 65558, 0, 131073, 65559, 0, 65537, 65560, 0, 65538, 196607, 0, 65536, 131072, 0, 65538, 131095, 0, 65536, 131096, 0, 65538, 262143, 0, 65536, 196608, 0, 65538, 196631, 0, 65536, 196632, 0, 65538, 327679, 0, 65536, 262144, 0, 65538, 262167, 0, 131072, 262168, 0, 131074, 393215, 0, 65536, 327680, 0, 65538, 327705, 0, 65537, 458751, 0, 65536, 393216, 0, 65538, 393241, 0, 65537, 524287, 0, 65536, 458752, 0, 65537, 458753, 0, 1, 458754, 0, 1, 458755, 0, 1, 458756, 0, 1, 458757, 0, 1, 458758, 0, 1, 458759, 0, 1, 458760, 0, 1, 458761, 0, 1, 458762, 0, 1, 458763, 0, 1, 458764, 0, 1, 458765, 0, 1, 458766, 0, 1, 458767, 0, 1, 458768, 0, 1, 458769, 0, 1, 458770, 0, 1, 458771, 0, 1, 458772, 0, 1, 458773, 0, 1, 458774, 0, 1, 458775, 0, 1, 458776, 0, 2, 589823, 0, 131072, 524288, 0, 131073, 524289, 0, 131073, 524290, 0, 131073, 524291, 0, 131073, 524292, 0, 131073, 524293, 0, 131073, 524294, 0, 131073, 524295, 0, 131073, 524296, 0, 131073, 524297, 0, 131073, 524298, 0, 131073, 524299, 0, 131073, 524300, 0, 131073, 524301, 0, 131073, 524302, 0, 131073, 524303, 0, 131073, 524304, 0, 131073, 524305, 0, 131073, 524306, 0, 131073, 524307, 0, 131073, 524308, 0, 131073, 524309, 0, 131073, 524310, 0, 131073, 524311, 0, 131073, 524312, 0, 131074 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerKeys" parent="CanvasLayer" instance=ExtResource( 1 )]
+
+[node name="PlayerPowers" parent="CanvasLayer" instance=ExtResource( 2 )]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource( 8 )]
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( 57.0176, 83.7446 )
+
+[node name="Doors" type="YSort" parent="YSort"]
+
+[node name="RedDoor" parent="YSort/Doors" instance=ExtResource( 10 )]
+position = Vector2( 30.7328, 105.185 )
+level = 21
+
+[node name="SpawnPoint" parent="YSort/Doors/RedDoor" index="4"]
+position = Vector2( 16.9514, 1.45677 )
+
+[node name="Laser" type="YSort" parent="YSort"]
+
+[node name="LaserSight2" parent="YSort/Laser" instance=ExtResource( 6 )]
+position = Vector2( 110.316, 41.2273 )
+stop_working_time = 0.001
+work_time = 4.0
+
+[node name="LaserSight3" parent="YSort/Laser" instance=ExtResource( 6 )]
+position = Vector2( 165.552, 40.7818 )
+stop_working_time = 0.001
+work_time = 4.0
+
+[node name="LaserSight4" parent="YSort/Laser" instance=ExtResource( 6 )]
+position = Vector2( 217.224, 40.3364 )
+stop_working_time = 0.001
+work_time = 4.0
+
+[node name="LaserSight5" parent="YSort/Laser" instance=ExtResource( 6 )]
+position = Vector2( 271.123, 39.8909 )
+stop_working_time = 0.001
+work_time = 4.0
+
+[node name="LaserSight8" parent="YSort/Laser" instance=ExtResource( 6 )]
+position = Vector2( 192.778, 41.0744 )
+rotation = 0.129154
+stop_working_time = 0.001
+work_time = 4.0
+
+[node name="LaserSight9" parent="YSort/Laser" instance=ExtResource( 6 )]
+position = Vector2( 138.379, 38.5546 )
+rotation = -1.01404
+stop_working_time = 0.001
+work_time = 4.0
+
+[node name="LaserSight10" parent="YSort/Laser" instance=ExtResource( 6 )]
+position = Vector2( 248.541, 40.0012 )
+rotation = 0.382227
+stop_working_time = 0.001
+work_time = 4.0
+
+[node name="LaserSight11" parent="YSort/Laser" instance=ExtResource( 6 )]
+position = Vector2( 145.158, 104.816 )
+rotation = 2.28638
+stop_working_time = 0.001
+work_time = 4.0
+
+[node name="LaserSight12" parent="YSort/Laser" instance=ExtResource( 6 )]
+position = Vector2( 191.833, 105.817 )
+rotation = 2.15897
+stop_working_time = 0.001
+work_time = 4.0
+
+[node name="LaserSight13" parent="YSort/Laser" instance=ExtResource( 6 )]
+position = Vector2( 260.313, 103.35 )
+rotation = 2.66686
+stop_working_time = 0.001
+work_time = 4.0
+
+[node name="Diamond" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 350.255, 52.0647 )
+
+[node name="Limits" type="Node" parent="."]
+
+[node name="TopLeft" type="Position2D" parent="Limits"]
+
+[node name="BottomRight" type="Position2D" parent="Limits"]
+position = Vector2( 400, 144 )
+[connection signal="player_passed" from="YSort/Doors/RedDoor" to="." method="_on_RedDoor_player_passed"]
+[connection signal="is_player" from="YSort/Laser/LaserSight2" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Laser/LaserSight3" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Laser/LaserSight4" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Laser/LaserSight5" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Laser/LaserSight8" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Laser/LaserSight9" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Laser/LaserSight10" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Laser/LaserSight11" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Laser/LaserSight12" to="." method="_on_LaserSight_is_player"]
+[connection signal="is_player" from="YSort/Laser/LaserSight13" to="." method="_on_LaserSight_is_player"]
+[connection signal="game_finished" from="YSort/Diamond" to="." method="_on_Diamond_game_finished"]
+
+[editable path="YSort/Doors/RedDoor"]
