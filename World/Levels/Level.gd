@@ -8,7 +8,6 @@ onready var player = $YSort/Player
 onready var doors = $YSort/Doors
 
 func _ready():
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)
 	_get_level_name()
 	_spawn_player()
 	_draw_keys()
